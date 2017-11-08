@@ -4,15 +4,28 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using code.Models;
+using System.IO;
+using Newtonsoft.Json;
+using Code.Models;
+using Code.Models.Data;
 
-namespace code.Controllers
+namespace Code.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel viewModel = new HomeViewModel();
+
+            using (var stream = new FileStream(Path.GetFullPath("data.json"), FileMode.Open))
+            {
+                using (var rdr = new StreamReader(stream))
+                {
+                    viewModel.Employees = (IEnumerable<Employee>)JsonConvert.DeserializeObject<IEnumerable<Employee>>(rdr.ReadToEnd());
+                }
+            }
+
+            return View(viewModel);
         }
 
         public IActionResult About()

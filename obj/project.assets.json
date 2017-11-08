@@ -12539,11 +12539,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\code\\code.csproj",
+      "projectUniqueName": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\Code\\code.csproj",
       "projectName": "code",
-      "projectPath": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\code\\code.csproj",
+      "projectPath": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\Code\\code.csproj",
       "packagesPath": "C:\\Users\\t0x3e\\.nuget\\packages\\",
-      "outputPath": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\code\\obj\\",
+      "outputPath": "d:\\00 Dev Projects\\01 Web\\17 Social Fund\\Code\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
