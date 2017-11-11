@@ -67,7 +67,7 @@
             </li>
             <li class="breadcrumb-item active">Pusta strona</li>
         </ol>
-        <div class="row">
+        <div class="card mb-3">
             @RenderBody()
         </div>
     </div>
@@ -108,8 +108,12 @@
         <script src="~/js/bootstrap.bundle.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="~/lib/jquery-easing/jquery.easing.js"></script>
+        <!-- Page level plugins JavaScript -->
+        <script src="~/lib/datatables.net/js/jquery.dataTables.js"></script>
+        <scritp src="~/lib/datatables.net-bs4/js/dataTables.bootstrap4.js"></scritp>
         <!-- Custom scripts for all pages-->
         <script src="~/js/sb-admin.js"></script>
+        <script src="~/js/sb-admin-datatables.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
