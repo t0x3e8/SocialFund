@@ -15,17 +15,7 @@ namespace Code.Controllers
     {
         public IActionResult Index()
         {
-            HomeViewModel viewModel = new HomeViewModel();
-
-            using (var stream = new FileStream(Path.GetFullPath("data.json"), FileMode.Open))
-            {
-                using (var rdr = new StreamReader(stream))
-                {
-                    viewModel.Employees = (IEnumerable<Employee>)JsonConvert.DeserializeObject<IEnumerable<Employee>>(rdr.ReadToEnd());
-                }
-            }
-
-            return View(viewModel);
+            return View();
         }
 
         public IActionResult About()

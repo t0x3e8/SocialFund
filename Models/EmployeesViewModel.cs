@@ -3,7 +3,7 @@ using Code.Models.Data;
 
 namespace Code.Models
 {
-    public class HomeViewModel
+    public class EmployeesViewModel
     {
         public IEnumerable<Employee> Employees { get; set; }
     }

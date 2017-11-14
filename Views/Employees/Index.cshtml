@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Code.Models.EmployeesViewModel
+
+
+<div class="card mb-3">
+  <div class="card-body">
+    <a class="btn btn-primary" href="#" role="button">Dodaj pracownika</a>    
+    <hr />
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data złożenia wniosku</th>
+            <th>Dział</th>
+            <th>Przełożony</th>
+            <th>Klasyfkacja dochodowa</th>
+            <th>Data zatrudnienia</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Id</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data złożenia wniosku</th>
+            <th>Dział</th>
+            <th>Przełożony</th>
+            <th>Klasyfkacja dochodowa</th>
+            <th>Data zatrudnienia</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          @foreach(var emp in Model.Employees) {
+            <tr>
+              <td>@emp.ID</td>
+              <td>@emp.Name</td>
+              <td>@emp.Surname</td>
+              <td>@emp.SubmissionDate</td>
+              <td>@emp.Department</td>
+              <td>@emp.Manager</td>
+              <td>@emp.IncomeLevel</td>
+              <td>@emp.HiredDate</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="card-footer small text-muted">Ostatnia aktualizacja: </div>
+
+@section scripts {
+}
