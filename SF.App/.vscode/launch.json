@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/SF.App/bin/Debug/netcoreapp2.0/code.dll",
+            "program": "${workspaceRoot}/bin/Debug/netcoreapp2.0/code.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/SF.App",
+            "cwd": "${workspaceRoot}",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
@@ -33,7 +33,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+                "/Views": "${workspaceRoot}/Views"
             }
         },
         {
