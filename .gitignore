@@ -1,0 +1,10 @@
+SF.App/[Oo]bj/
+SF.Tests/obj/
+SF.App/[Bb]in/
+SF.Tests/[Bb]in/
+SF.App/wwwroot
+SF.App/Properties
+.vs
+.vscode
+SF.App/SF.App.csproj.user
+SF.Tests/obj/SF.Tests.csproj.nuget.cache
