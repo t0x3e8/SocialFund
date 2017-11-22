@@ -1,6 +1,6 @@
 using System;
 
-namespace Code.Models
+namespace SF.App.Models
 {
     public class ErrorViewModel
     {

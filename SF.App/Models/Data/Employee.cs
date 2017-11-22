@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Code.Models.Data
+namespace SF.App.Models.Data
 {
     public class Employee
     {

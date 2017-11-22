@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Code.Models.Data;
+using SF.App.Models.Data;
 
-namespace Code.Models
+namespace SF.App.Models
 {
     public class EmployeesViewModel
     {

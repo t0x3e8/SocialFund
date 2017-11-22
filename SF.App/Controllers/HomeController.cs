@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Newtonsoft.Json;
-using Code.Models;
-using Code.Models.Data;
+using SF.App.Models;
+using SF.App.Models.Data;
 
-namespace Code.Controllers
+namespace SF.App.Controllers
 {
     public class HomeController : Controller
     {

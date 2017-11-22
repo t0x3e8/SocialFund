@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 
-public class ReportsController : Controller {
-    public IActionResult Index() {
-        return View();
+namespace SF.App.Controllers
+{
+    public class ReportsController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+
     }
-    
 }

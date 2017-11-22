@@ -1,26 +1,35 @@
 using System.Collections.Generic;
 using System.IO;
-using Code.Models;
-using Code.Models.Data;
+using SF.App.Models;
+using SF.App.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Code.Controllers {
-    
-    public class EmployeesController :Controller {
-        public IActionResult Index () {
-            EmployeesViewModel viewModel = new EmployeesViewModel ();
-
-            using (var stream = new FileStream (Path.GetFullPath ("data.json"), FileMode.Open)) {
-                using (var rdr = new StreamReader (stream)) {
-                    viewModel.Employees = (IEnumerable<Employee>) JsonConvert.DeserializeObject<IEnumerable<Employee>> (rdr.ReadToEnd ());
-                }
-            }
+namespace SF.App.Controllers
+{
+    public class EmployeesController : Controller
+    {
+        public IActionResult Index()
+        {
+            EmployeesViewModel viewModel = new EmployeesViewModel();
+            PopulateViewModel(viewModel);
 
             return View(viewModel);
         }
 
-        public IActionResult Single () {
+        private static void PopulateViewModel(EmployeesViewModel viewModel)
+        {
+            using (var stream = new FileStream(Path.GetFullPath("data.json"), FileMode.Open))
+            {
+                using (var rdr = new StreamReader(stream))
+                {
+                    viewModel.Employees = (IEnumerable<Employee>)JsonConvert.DeserializeObject<IEnumerable<Employee>>(rdr.ReadToEnd());
+                }
+            }
+        }
+
+        public IActionResult Single()
+        {
             return View();
         }
     }
