@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Newtonsoft.Json;
 using SF.App.Models;
-using SF.App.Models.Data;
 
 namespace SF.App.Controllers
 {

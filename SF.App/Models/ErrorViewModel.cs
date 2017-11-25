@@ -1,5 +1,3 @@
-using System;
-
 namespace SF.App.Models
 {
     public class ErrorViewModel
