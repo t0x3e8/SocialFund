@@ -1,2 +1,6 @@
 language: csharp
-solution: Code.sln
+mono: none
+dotnet: 2.0
+dist: trusty
+script: 
+- dotnet restore
