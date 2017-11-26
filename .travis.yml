@@ -2,8 +2,9 @@ language: csharp
 mono: none
 dotnet: 2.0.0
 dist: trusty
+before_script:
+  - npm install -g gulp-cli
 script: 
-- dotnet restore
-- npm install
-- gulp prepUnitTests 
-- dotnet test SF.Tests\SF.Tests.csproj
+  - dotnet restore
+  - gulp prepUnitTests 
+  - dotnet test SF.Tests\SF.Tests.csproj
