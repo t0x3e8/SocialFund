@@ -3,7 +3,7 @@ mono: none
 dotnet: 2.0.0
 dist: trusty
 before_script:
-  - npm install -g gulp-cli
+  - npm install gulp-cli
 script: 
   - dotnet restore
   - gulp prepUnitTests 
