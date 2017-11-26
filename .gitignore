@@ -8,3 +8,4 @@ SF.App/Properties
 .vscode
 SF.App/SF.App.csproj.user
 SF.Tests/obj/SF.Tests.csproj.nuget.cache
+node_modules/

@@ -4,4 +4,6 @@ dotnet: 2.0.0
 dist: trusty
 script: 
 - dotnet restore
-- dotnet test
+- npm install
+- gulp prepUnitTests 
+- dotnet test SF.Tests\SF.Tests.csproj
