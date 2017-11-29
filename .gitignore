@@ -1,9 +1,9 @@
 SF.App/[Oo]bj/
-SF.Tests/obj/
 SF.App/[Bb]in/
+SF.App/Properties/
+SF.App/bower/
 SF.Tests/[Bb]in/
-SF.App/wwwroot
-SF.App/Properties
+SF.Tests/obj/
 .vs
 .vscode
 SF.App/SF.App.csproj.user
