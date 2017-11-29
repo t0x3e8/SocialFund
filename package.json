@@ -4,6 +4,14 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "bootstrap": "4.0.0-beta.2",
+    "components-font-awesome": "^4.6.3",
+    "datatables.net": "^1.10.16",
+    "datatables.net-bs4": "^1.10.16",
+    "jquery": "^3.2.1",
+    "jquery-easing": "^0.0.1",
+    "jquery-validation": "^1.17.0",
+    "jquery-validation-unobtrusive": "^3.2.6"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
@@ -11,10 +19,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/t0x3e8/SocialFund.git"
-  },
+  "repository": "git+https://github.com/t0x3e8/SocialFund.git",
   "author": "Jarek Jurczyk",
   "license": "ISC",
   "bugs": {

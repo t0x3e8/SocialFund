@@ -8,35 +8,35 @@ gulp.task('prepUnitTests', function () {
 
 gulp.task('copyLibs', function () {
     // font awesome
-    gulp.src('SF.App/bower/components-font-awesome/css/*.css')
+    gulp.src('node_modules/components-font-awesome/css/*.css')
         .pipe(gulp.dest('SF.App/wwwroot/css/lib/'));
 
-    gulp.src('SF.App/bower/components-font-awesome/fonts/*')
+    gulp.src('node_modules/components-font-awesome/fonts/*')
         .pipe(gulp.dest('SF.App/wwwroot/css/fonts/'));
 
     // bootstrap
-    // gulp.src('SF.App/bower/bootstrap/dist/css/bootstrap.*css')
-    //     .pipe(gulp.dest('SF.App/wwwroot/css/lib/'));
-
-    // gulp.src('SF.App/bower/bootstrap/dist/js/bootstrap.*js')
-    //     .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
-
-    // datatables
-    gulp.src('SF.App/bower/datatables.net-bs4/css/dataTables.bootstrap4.*css')
+    gulp.src('node_modules/bootstrap/dist/css/bootstrap.*css')
         .pipe(gulp.dest('SF.App/wwwroot/css/lib/'));
 
-    gulp.src('SF.App/bower/datatables.net-bs4/js/dataTables.bootstrap4.*js')
+    gulp.src('node_modules/bootstrap/dist/js/bootstrap.*js')
         .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
 
-    gulp.src('SF.App/bower/datatables.net/js/jquery.dataTables.*js')
+    // datatables
+    gulp.src('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.*css')
+        .pipe(gulp.dest('SF.App/wwwroot/css/lib/'));
+
+    gulp.src('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.*js')
+        .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
+
+    gulp.src('node_modules/datatables.net/js/jquery.dataTables.*js')
         .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
 
     // jquery
-    gulp.src('SF.App/bower/jquery/dist/jquery.*js')
+    gulp.src('node_modules/jquery/dist/jquery.*js')
         .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
 
     // jquery easing
-    gulp.src('SF.App/bower/jquery-easing/jquery.easing.*js')
+    gulp.src('node_modules/jquery-easing/jquery.easing.*js')
         .pipe(gulp.dest('SF.App/wwwroot/js/lib/'));
 
 })
