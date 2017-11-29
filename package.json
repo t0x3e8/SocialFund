@@ -1,7 +1,7 @@
 {
   "name": "socialfund",
   "version": "1.0.0",
-  "description": "",
+  "description": "A service to manage a company's social fund.",
   "main": "gulpfile.js",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",

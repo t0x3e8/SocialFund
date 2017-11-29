@@ -9,3 +9,4 @@ SF.Tests/obj/
 SF.App/SF.App.csproj.user
 SF.Tests/obj/SF.Tests.csproj.nuget.cache
 node_modules/
+yarn.lock
