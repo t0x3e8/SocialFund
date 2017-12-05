@@ -1,7 +1,7 @@
 using Xunit;
 using SF.App.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using SF.App.Models;
+using SF.App.Models.ViewModels;
 
 public class DashboardControllerTests { 
     [Fact]
@@ -15,6 +15,7 @@ public class DashboardControllerTests {
         // assert
         Assert.NotNull(result);
         Assert.NotNull(result.Model);
-        Assert.IsType<DashboardIndexViewModel>(result.Model);        
+        Assert.IsType<DashboardIndexViewModel>(result.Model);
+        Assert.NotNull((result.Model as DashboardIndexViewModel).Email);
     }
 }
