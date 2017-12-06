@@ -2,12 +2,21 @@ using Xunit;
 using SF.App.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using SF.App.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 public class DashboardControllerTests { 
     [Fact]
     public void Index_Should_Return_Form_of_Current_User() {
         // arrange
         DashboardController controller = new DashboardController();
+        controller.ControllerContext = new ControllerContext {
+            HttpContext = new DefaultHttpContext{
+                User = new ClaimsPrincipal(new ClaimsIdentity(new Claim[] {
+                    new Claim(ClaimTypes.Name, "abcd@email.me")
+                }, "sometAuthentication"))
+            }
+        };
         
         //act
         ViewResult result = controller.Index() as ViewResult;
