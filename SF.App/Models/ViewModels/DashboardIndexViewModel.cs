@@ -1,5 +1,7 @@
-namespace SF.App.Models.ViewModels {
-    public class DashboardIndexViewModel {
+namespace SF.App.Models.ViewModels
+{
+    public class DashboardIndexViewModel
+    {
         public string EmployeeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
