@@ -5,9 +5,8 @@ using SF.App.Models.ViewModels;
 
 namespace SF.App.Controllers {
     public class DashboardController : Controller {
-        [Authorize]
+        [Authorize(Policy="RegisteredAsUser")]
         public ViewResult Index() {
-
             DashboardIndexViewModel viewModel = new DashboardIndexViewModel() { 
                 EmployeeId = "MP1234",
                 Name = "Jan",
@@ -21,11 +20,6 @@ namespace SF.App.Controllers {
         
         [Authorize(Policy="RegisteredAsAdmin")]
         public ViewResult Admin() {
-            return View();
-        }
-
-        [Authorize(Policy="RegisteredAsUser")]
-        public ViewResult Users() {
             return View();
         }
     }
