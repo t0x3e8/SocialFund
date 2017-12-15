@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SF.App.Extensions;
 
 namespace SF.App
 {
@@ -26,6 +29,22 @@ namespace SF.App
             })
             .AddAzureAd(options => Configuration.Bind("AzureAd", options))
             .AddCookie();
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("RegisteredAsUser", policy => {
+                    policy.Requirements.Add(new RegisteredAsUserRequirement());
+                });
+                options.AddPolicy("RegisteredAsAdmin", policy => {
+                    policy.Requirements.Add(new RegisteredAsAdminRequirement());
+                });
+            });
+
+            IDictionary<string, int> simpleDb = new Dictionary<string, int>();
+            simpleDb.Add("jaju@dgs.com", 2);
+
+            services.AddSingleton<IDictionary<string, int>>(simpleDb);
+            services.AddSingleton<IAuthorizationHandler, SocialFundAdminHandler>();
+            services.AddSingleton<IAuthorizationHandler, SocialFundUserHandler>();
 
             services.AddMvc();
         }

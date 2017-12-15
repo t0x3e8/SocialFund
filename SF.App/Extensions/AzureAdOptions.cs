@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Authentication
+namespace SF.App.Extensions
 {
     public class AzureAdOptions
     {
