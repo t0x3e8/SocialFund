@@ -11,5 +11,6 @@ SF.Tests/obj/SF.Tests.csproj.nuget.cache
 node_modules/
 yarn.lock
 package-lock.json
-wwwroot/js/lib/
-wwwroot/css/lib/
+SF.App/wwwroot/js/lib/
+SF.App/wwwroot/css/lib/
+SF.App/wwwroot/css/fonts/
