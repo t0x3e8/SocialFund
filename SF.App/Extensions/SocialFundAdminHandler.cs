@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using SF.App.Models.Data;
 
 namespace SF.App.Extensions {
     public class SocialFundAdminHandler : AuthorizationHandler<RegisteredAsAdminRequirement>
     {
-        private IDictionary<string, int> simpleDb;
-        public SocialFundAdminHandler(IDictionary<string, int> db)
+        private SocialFundDBContext dBContext;
+        public SocialFundAdminHandler(SocialFundDBContext dBContext)
         {
-            this.simpleDb = db;
+            this.dBContext = dBContext;
         }
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RegisteredAsAdminRequirement requirement)
         {
@@ -18,8 +19,9 @@ namespace SF.App.Extensions {
             }
 
             var email = context.User.FindFirst(claim => claim.Type == ClaimTypes.Upn).Value;
+            var employee = dBContext.Employees.Find(emp => emp.Email == email);
 
-            if (this.simpleDb[email] == 1) {
+            if (employee != null && employee.RoleName == "Admin") {
                 context.Succeed(requirement);
             }
 

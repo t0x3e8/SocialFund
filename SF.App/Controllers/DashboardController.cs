@@ -7,14 +7,8 @@ namespace SF.App.Controllers {
     public class DashboardController : Controller {
         [Authorize(Policy="RegisteredAsUser")]
         public ViewResult Index() {
-            DashboardIndexViewModel viewModel = new DashboardIndexViewModel() { 
-                EmployeeId = "MP1234",
-                Name = "Jan",
-                Surname = "Nowak", 
-                Email = User.Identity.Name
-            };
 
-            return View(viewModel);
+            return View();
         }
 
         

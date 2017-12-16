@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SF.App.Extensions;
+using SF.App.Models.Data;
 
 namespace SF.App
 {
@@ -39,10 +40,7 @@ namespace SF.App
                 });
             });
 
-            IDictionary<string, int> simpleDb = new Dictionary<string, int>();
-            simpleDb.Add("jaju@dgs.com", 2);
-
-            services.AddSingleton<IDictionary<string, int>>(simpleDb);
+            services.AddSingleton<SocialFundDBContext>();
             services.AddSingleton<IAuthorizationHandler, SocialFundAdminHandler>();
             services.AddSingleton<IAuthorizationHandler, SocialFundUserHandler>();
 
@@ -69,7 +67,7 @@ namespace SF.App
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Dashboard}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
