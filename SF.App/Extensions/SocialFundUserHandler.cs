@@ -3,9 +3,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace SF.App.Extensions {
+namespace SF.App.Extensions
+{
     public class SocialFundUserHandler : AuthorizationHandler<RegisteredAsUserRequirement>
-    {        
+    {
         private IDictionary<string, int> simpleDb;
         public SocialFundUserHandler(IDictionary<string, int> db)
         {
@@ -13,14 +14,20 @@ namespace SF.App.Extensions {
         }
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RegisteredAsUserRequirement requirement)
         {
-            if(!context.User.HasClaim(claim => claim.Type == ClaimTypes.Upn)) {
+            if (!context.User.HasClaim(claim => claim.Type == ClaimTypes.Upn))
+            {
                 return Task.CompletedTask;
             }
 
             var email = context.User.FindFirst(claim => claim.Type == ClaimTypes.Upn).Value;
 
-            if (this.simpleDb[email] == 2) {
+            if (this.simpleDb.ContainsKey(email) && this.simpleDb[email] == 2)
+            {
                 context.Succeed(requirement);
+            }
+            else
+            {
+                context.Fail();
             }
 
             return Task.CompletedTask;
