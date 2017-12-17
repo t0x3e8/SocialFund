@@ -8,5 +8,4 @@ install:
 script: 
   - dotnet restore
   - gulp prepUnitTests
-  - gulp copyLibs
   - dotnet test SF.Tests/
