@@ -11,6 +11,8 @@ SF.Tests/obj/SF.Tests.csproj.nuget.cache
 node_modules/
 yarn.lock
 package-lock.json
-SF.App/wwwroot/js/lib/
-SF.App/wwwroot/css/lib/
-SF.App/wwwroot/css/fonts/
+
+## Disable due to problems with deployment to Azure
+# SF.App/wwwroot/js/lib/
+# SF.App/wwwroot/css/lib/
+# SF.App/wwwroot/css/fonts/
