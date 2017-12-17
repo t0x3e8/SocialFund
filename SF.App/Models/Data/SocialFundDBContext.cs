@@ -21,7 +21,7 @@ namespace SF.App.Models.Data {
         private void InitializeEmployees()
         {
             this.Employees = new List<Employee>();
-            this.Employees.Add(new Employee {ID = "ID1234", Email="aju@dgs.com", Name= "Jarek", Surname="Jurczyk", Manager="Adam Kowalski", Department = "Finance", HiredDate = new DateTime(2017, 1, 1) , RoleName = "Admin" });
+            this.Employees.Add(new Employee {ID = "ID1234", Email="jaju@dgs.com", Name= "Jarek", Surname="Jurczyk", Manager="Adam Kowalski", Department = "Finance", HiredDate = new DateTime(2017, 1, 1) , RoleName = "Admin" });
             this.Employees.Add(new Employee {ID = "ID1235", Email="pwso@dgs.com", Name= "Paweł", Surname="Synsołtysa", Manager="Adam Kowalski", Department = "Finance", HiredDate = new DateTime(2017, 12, 1), RoleName = "Admin"});
             this.Employees.Add(new Employee {ID = "ID1236", Email="qaju@dgs.com", Name= "Agata", Surname="Ataga", Manager="Adam Kowalski", Department = "Finance", HiredDate = new DateTime(2017, 3, 1) });
             this.Employees.Add(new Employee {ID = "ID1237", Email="waju@dgs.com", Name= "Alex", Surname="Reks", Manager="Adam Kowalski", Department = "Finance", HiredDate = new DateTime(2017, 4, 1) });

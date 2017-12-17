@@ -9,6 +9,7 @@ public class HomeControllerTests {
     [Fact]
     public void Index_Should_Return_Form_of_Registered_User() {
         // arrange
+        // TODO: mock the find user function
         SocialFundDBContext dBContext = new SocialFundDBContext();
         HomeController controller = new HomeController(dBContext);
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("jaju@dgs.com");
@@ -34,6 +35,7 @@ public class HomeControllerTests {
     public void Index_Should_Allow_To_Update_Employee_Record() {
         // TODO: THIS IS UGLY TO BE REFACTORED
         // arrange
+        // TODO: mock the find user function
         SocialFundDBContext dBContext = new SocialFundDBContext();
         HomeController controller = new HomeController(dBContext);
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("jaju@dgs.com");        
@@ -61,12 +63,11 @@ public class HomeControllerTests {
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("doesnotexit@dgs.com");
         
         //act
-        ViewResult result = controller.Index() as ViewResult;
+        object result = controller.Index();
     
         // assert
         Assert.NotNull(result);
-        Assert.NotNull(result.Model);
-        Assert.True((result.Model as HomeIndexViewModel).IsModelEmpty);
+        Assert.IsType(typeof(RedirectToActionResult), result);
     }
 
     [Fact]
