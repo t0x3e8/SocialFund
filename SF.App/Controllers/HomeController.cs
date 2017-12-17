@@ -6,6 +6,7 @@ using SF.App.Models;
 using SF.App.Models.ViewModels;
 using System.Collections.Generic;
 using SF.App.Models.Data;
+using System;
 
 namespace SF.App.Controllers
 {
@@ -41,6 +42,9 @@ namespace SF.App.Controllers
                 }
             }
 
+            if (viewModel.IsModelEmpty) 
+                return RedirectToAction("NoRecord");
+
             return View(viewModel);
         }
 
@@ -61,6 +65,35 @@ namespace SF.App.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
+        public IActionResult NoRecord() {
+            return View();
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult ReportNoRecord() {
+            var userUpn = this.User.FindFirst(claim => claim.Type == ClaimTypes.Upn);
+            var userEmail = (userUpn != null) ? userUpn.Value : "";
+
+            if (!string.IsNullOrEmpty(userEmail)) {
+                var report = this.dBContext.Reports.Find(r => r.RequesterEmail == userEmail && r.Type == ReportType.MissingProfileInfo);
+                if(report == null) {
+                    report = new Report{
+                        RequesterEmail = userEmail,
+                        Type = ReportType.MissingProfileInfo
+                    };
+
+                    this.dBContext.Reports.Add(report);
+                }
+                else {
+                    report.SubmissionDate = DateTime.Now;
+                }
+            }
+
+            return Redirect("NoRecord");
+        }
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

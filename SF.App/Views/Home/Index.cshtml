@@ -1,8 +1,7 @@
 ﻿@model SF.App.Models.ViewModels.HomeIndexViewModel
 
-@if(!Model.IsModelEmpty) {
-    <div class="row">
-        <div class="card col-md-6 mx-auto mt-8 px-0">
+<div class="row">
+    <div class="card col-md-6 mx-auto mt-8 px-0">
         <div class="card-header">Dane pracownika</div>
         <div class="card-body">
             <form method="Post" asp-controller="Home" asp-action="Index">
@@ -53,14 +52,9 @@
                 <input type="submit" class="btn btn-primary btn-block" value="Zapisz wprowadzone zmiany" />
             </form>
         </div>
-        </div>
     </div>
-}
-else 
-{
-    <H1>Brak danych w bazie danych ZFŚS</H1>
-    <p>W bazie danych systemu ZFŚS brakuje dodatkowych informacji. <a>Zgłoś problem</a></p>
-}
+</div>
+
 
 <!-- <div class="row">
     <div class="col-xl-3 col-sm-6 mb-3">

@@ -32,7 +32,7 @@ public class HomeControllerTests {
 
     [Fact]
     public void Index_Should_Allow_To_Update_Employee_Record() {
-        // THIS IS UGLY TO BE REFACTORED
+        // TODO: THIS IS UGLY TO BE REFACTORED
         // arrange
         SocialFundDBContext dBContext = new SocialFundDBContext();
         HomeController controller = new HomeController(dBContext);
@@ -67,5 +67,24 @@ public class HomeControllerTests {
         Assert.NotNull(result);
         Assert.NotNull(result.Model);
         Assert.True((result.Model as HomeIndexViewModel).IsModelEmpty);
+    }
+
+    [Fact]
+    public void ReportNoRecord_Should_File_A_Request() {
+        // TODO: THIS IS WAY TOO COMPLICATED, IT MUST BE THE DB SERVICE ONLY TESTER NOT HERE NOT IN CTRL
+        // arrange
+        var email ="unit@test.email.com";
+        SocialFundDBContext dBContext = new SocialFundDBContext();
+        HomeController controller = new HomeController(dBContext);
+        controller.ControllerContext = Helper.CreateControllerContextWithUserClaim(email);
+        dBContext.Reports.RemoveAll(r => r.RequesterEmail == email);
+        
+        //act
+        // running twice to proof that the same report won't be requested twice for the same email
+        controller.ReportNoRecord();
+        controller.ReportNoRecord();
+    
+        // assert
+        Assert.Single(dBContext.Reports.FindAll(r => r.RequesterEmail == email));
     }
 }
