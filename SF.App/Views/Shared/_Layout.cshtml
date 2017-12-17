@@ -30,36 +30,30 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ZFŚS</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pracownicy">
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">
-                <i class="fa fa-fw fa-table"></i>
-                <span class="nav-link-text">Pracownicy</span>
-            </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Raporty">
-            <a asp-area="" asp-controller="Report" asp-action="Index" class="nav-link">
-                <i class="fa fa-fw fa-area-chart"></i>
-                <span class="nav-link-text">Raporty</span>
-            </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-            <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-                <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-            </li>
-        </ul>
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pracownicy">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">
+                        <i class="fa fa-fw fa-table"></i>
+                        <span class="nav-link-text">Dane pracownika</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Raporty">
+                    <a asp-area="" asp-controller="Report" asp-action="Index" class="nav-link">
+                        <i class="fa fa-fw fa-area-chart"></i>
+                        <span class="nav-link-text">Raporty</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="content-wrapper">
@@ -67,9 +61,9 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-            <a as-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
+                <a as-area="" asp-controller="Home" asp-action="Index">ZFŚS</a>
             </li>
-            <li class="breadcrumb-item active">Pusta strona</li>
+            <li class="breadcrumb-item active">Dane pracownika</li>
         </ol>
         @RenderBody()
     </div>
@@ -78,7 +72,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-            <small>Copyright © Your Website 2017</small>
+            <small>Copyright © Social Fund 2017</small>
             </div>
         </div>
     </footer>

@@ -30,7 +30,30 @@ public class HomeControllerTests {
         Assert.False((result.Model as HomeIndexViewModel).IsModelEmpty);
     }
 
-        [Fact]
+    [Fact]
+    public void Index_Should_Allow_To_Update_Employee_Record() {
+        // THIS IS UGLY TO BE REFACTORED
+        // arrange
+        SocialFundDBContext dBContext = new SocialFundDBContext();
+        HomeController controller = new HomeController(dBContext);
+        controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("jaju@dgs.com");        
+        HomeIndexViewModel vm = (controller.Index() as ViewResult).Model as HomeIndexViewModel;
+        string oldName = vm.Name;
+        
+        // act
+        vm.Name = "UnitTest1";
+        controller.Index(vm);
+        vm = (controller.Index() as ViewResult).Model as HomeIndexViewModel;
+
+        //assert
+        Assert.Same("UnitTest1", vm.Name);
+
+        //restore
+        vm.Name = oldName;
+        controller.Index(vm);
+    }
+
+    [Fact]
     public void Index_Should_Return_Information() {
         // arrange
         SocialFundDBContext dBContext = new SocialFundDBContext();

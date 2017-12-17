@@ -44,6 +44,23 @@ namespace SF.App.Controllers
             return View(viewModel);
         }
 
+        
+        [HttpPost]
+        [Authorize]
+        public IActionResult Index(HomeIndexViewModel viewModel) {
+            var employee = this.dBContext.Employees.Find(emp => emp.Email == viewModel.Email);
+            if (employee.Name != viewModel.Name)
+                employee.Name = viewModel.Name;
+            if (employee.Surname != viewModel.Surname)
+                employee.Surname = viewModel.Surname;
+            if (employee.Department != viewModel.Department)
+                employee.Department = viewModel.Department;
+            if (employee.Manager != viewModel.DirectManager)
+                employee.Manager = viewModel.DirectManager;
+
+            return View(viewModel);
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
