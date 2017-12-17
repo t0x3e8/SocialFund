@@ -42,7 +42,7 @@ public class HomeControllerTests {
     
         // assert
         Assert.NotNull(result);
-        Assert.Null(result.Model);
+        Assert.NotNull(result.Model);
         Assert.True((result.Model as HomeIndexViewModel).IsModelEmpty);
     }
 }
