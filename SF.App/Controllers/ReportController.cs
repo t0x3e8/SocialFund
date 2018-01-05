@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SF.App.Models.ViewModels;
 
 namespace SF.App.Controllers
 {
@@ -15,7 +16,16 @@ namespace SF.App.Controllers
         [Authorize(Policy="RegisteredAsUser")]
         public IActionResult FamilyIncome()
         {
-            return View();
+            var vm = new ReportFamilyIncomeViewModel();
+            return View(vm);
+        }
+
+        [Authorize(Policy="RegisteredAsUser")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FamilyIncome(ReportFamilyIncomeViewModel viewModel)
+        {
+            return View(viewModel);
         }
     }
 }

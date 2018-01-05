@@ -40,12 +40,15 @@
                         <span class="nav-link-text">Dane pracownika</span>
                     </a>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Raporty">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseReport" data-parent="#exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Formularz">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseForm" data-parent="#exampleAccordion">
                         <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Raporty</span>
+                        <span class="nav-link-text">Formularze</span>
                     </a>
-                    <ul class="sidenav-second-level collapse" id="collapseReport">
+                    <ul class="sidenav-second-level collapse" id="collapseForm">
+                        <li>
+                            <a asp-controller="Report" asp-action="Index">Podgląd</a>
+                        </li>
                         <li>
                             <a asp-controller="Report" asp-action="FamilyIncome">Oświadczenie o dochodach</a>
                         </li>

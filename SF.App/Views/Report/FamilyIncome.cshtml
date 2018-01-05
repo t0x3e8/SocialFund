@@ -1,27 +1,22 @@
+@model SF.App.Models.ViewModels.ReportFamilyIncomeViewModel
+
 <div class="row">
     <div class="card col-md-8 mx-auto px-0">
-        <div class="card-header">Oświadczenie o dochodach osób pozostających we wspólnym gospodarstwie domowym</div>
+        <div class="card-header">Formularz oświadczenia o dochodach</div>
         <div class="card-body">
-            <form>
-                <div class="lead text-justify pb-2">
+            <form method="Post">
+                <div class="lead text-justify mt-2">
                     Oświadczenie o dochodach osób pozostających we wspólnym gospodarstwie domowym
                 </div>
-                <div class="pl-5">
-                    <div class="input-group pb-2">
-                        <div class="radio">
-                            <label><input type="radio" name="income"> Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi więcej niż 3500 zł,</label>
+                <div class="pl-5 mt-3">
+                    @foreach (var item in Model.IncomeLevels)
+                    {
+                        <div class="input-group pb-2">
+                            <div class="radio">
+                                <label><input asp-for="SelectedIncomeLevel" type="radio" value="@item.Id">@item.Text</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group pb-2">
-                        <div class="radio">
-                            <label><input type="radio" name="income">  Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi mniej niż 3500 zł, ale więcej niż 2000 zł,</label>
-                        </div>
-                    </div>
-                    <div class="input-group pb-2">
-                        <div class="radio">
-                            <label><input type="radio" name="income">  Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi poniżej 2000 zł,</label>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="text-justify mt-3">
                     Oświadczam, że podane dane są zgodne z prawdą, a w przypadku zmiany mojej sytuacji materialnej 
@@ -39,11 +34,14 @@
                 </div>
                 <div class="input-group pl-5 pt-2">
                     <div class="checkbox">
-                        <label><input type="checkbox"> Wnioskuję o przyznanie Przedpłaconej Karty Świątecznej,</label>
+                        <label><input asp-for="IsVoucherRequested"> Wnioskuję o przyznanie Przedpłaconej Karty Świątecznej,</label>
                     </div>
                 </div>
-                <div class="col-md-4 mx-auto mt-5">
-                    <input type="submit" class="btn btn-primary btn-block" value="Wyślij"/>
+                <div class="col-md-4 mx-auto mt-3">
+                    <input type="submit" class="btn btn-primary btn-block" value="Prześlij"/>
+                </div>
+                <div class="small mt-5">
+                    * Średni dochód brutto na osobę w gospodarstwie rodzinnym wyliczamy za okres ostatnich 3 miesięcy.
                 </div>
             </form>
         </div>

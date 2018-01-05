@@ -47,7 +47,6 @@ namespace SF.App.Controllers
 
             return View(viewModel);
         }
-
         
         [HttpPost]
         [Authorize]
