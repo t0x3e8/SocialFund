@@ -9,11 +9,14 @@
                     Oświadczenie o dochodach osób pozostających we wspólnym gospodarstwie domowym
                 </div>
                 <div class="pl-5 mt-3">
+                    <small id="incomeLeveleHelp" class="text-danger">
+                        @Model.ValidationErrorMessage
+                    </small>
                     @foreach (var item in Model.IncomeLevels)
                     {
                         <div class="input-group pb-2">
                             <div class="radio">
-                                <label><input asp-for="SelectedIncomeLevel" type="radio" value="@item.Id">@item.Text</label>
+                                <label><input asp-for="SelectedIncomeLevel" type="radio" value="@item.Level">   @item.Text</label>
                             </div>
                         </div>
                     }

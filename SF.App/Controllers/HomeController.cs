@@ -50,6 +50,7 @@ namespace SF.App.Controllers
         
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(HomeIndexViewModel viewModel) {
             var employee = this.dBContext.Employees.Find(emp => emp.Email == viewModel.Email);
             if (employee.Name != viewModel.Name)
@@ -69,9 +70,9 @@ namespace SF.App.Controllers
             return View();
         }
 
-
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult ReportNoRecord() {
             var userUpn = this.User.FindFirst(claim => claim.Type == ClaimTypes.Upn);
             var userEmail = (userUpn != null) ? userUpn.Value : "";

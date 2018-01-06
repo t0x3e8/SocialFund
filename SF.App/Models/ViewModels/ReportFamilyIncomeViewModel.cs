@@ -1,32 +1,35 @@
 using System.Collections.Generic;
+using SF.App.Resources;
 
 namespace SF.App.Models.ViewModels
 {
     public class ReportFamilyIncomeViewModel {
-        public bool IsVoucherRequested {get; set; }
+        public bool IsVoucherRequested {get; set; } = false;
         public IEnumerable<IncomeLevel> IncomeLevels { get;set; }
-        public int SelectedIncomeLevel { get; set; }
+        public IncomeLevelType SelectedIncomeLevel { get; set; } = IncomeLevelType.None;
+
+        public string ValidationErrorMessage { get; set; }
+        public bool IsSuccess { get; set;} = false;
 
         public ReportFamilyIncomeViewModel()
         {
-            this.IsVoucherRequested = false;
             this.IncomeLevels = new List<IncomeLevel>{
-                new IncomeLevel {Id = 10, Level = IncomeLevelType.AboveThen3500, Text = "Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi więcej niż 3500 zł,"},
-                new IncomeLevel {Id = 11, Level = IncomeLevelType.BelowThen2000, Text = "Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi mniej niż 3500 zł, ale więcej niż 2000 zł,"},
-                new IncomeLevel {Id = 12, Level = IncomeLevelType.Between3500And2000, Text = "Oświadczam, że średni dochód brutto* na osobę w moim gospodarstwie domowym wynosi poniżej 2000 zł,"}
+                new IncomeLevel { Level = IncomeLevelType.AboveThen3500, Text = SharedStrings.IncomeLevelAboveThen3500 },
+                new IncomeLevel { Level = IncomeLevelType.Between3500And2000, Text = SharedStrings.IncomeLevelBetween2000and3000 },
+                new IncomeLevel { Level = IncomeLevelType.BelowThen2000, Text = SharedStrings.IncomeLevelBelowThen2000 }
             };
         }
     }
 
     public class IncomeLevel {
-        public int Id { get; set; }
         public IncomeLevelType Level { get; set;}
         public string Text { get; set; }
     }
 
-    public enum IncomeLevelType {
-        AboveThen3500,
-        Between3500And2000,
-        BelowThen2000
+    public enum IncomeLevelType : int {
+        AboveThen3500 = 10,
+        Between3500And2000 = 11,
+        BelowThen2000 = 12,
+        None = 0
     }
 }
