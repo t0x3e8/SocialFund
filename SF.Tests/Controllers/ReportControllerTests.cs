@@ -39,7 +39,7 @@ public class ReportControllerTests {
     }
 
     [Fact]
-    public void IncomeReport_Should_Return_Success_When_Validation_Passes()
+    public void IncomeReport_Should_Redirect_To_Success_When_Validation_Passes()
     {
         //Given
         ReportController controller = new ReportController();
@@ -47,11 +47,9 @@ public class ReportControllerTests {
         ReportFamilyIncomeViewModel changedViewModel = (controller.FamilyIncome() as ViewResult).Model as ReportFamilyIncomeViewModel;
         //When
         changedViewModel.SelectedIncomeLevel = IncomeLevelType.BelowThen2000;
-        ViewResult result = controller.FamilyIncome(changedViewModel) as ViewResult;
+        RedirectToActionResult result = controller.FamilyIncome(changedViewModel) as RedirectToActionResult;
         //Then
         Assert.NotNull(result);
-        Assert.NotNull(result.Model);
-        Assert.True((result.Model as ReportFamilyIncomeViewModel).IsSuccess);
-        Assert.Null((result.Model as ReportFamilyIncomeViewModel).ValidationErrorMessage);
+        Assert.Same("Success", result.ActionName);
     }
 }

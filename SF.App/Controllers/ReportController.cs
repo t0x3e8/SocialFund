@@ -31,11 +31,19 @@ namespace SF.App.Controllers
                 viewModel.SelectedIncomeLevel == IncomeLevelType.AboveThen3500) {
                     viewModel.ValidationErrorMessage = null;
                     viewModel.IsSuccess = true;
+
+                    return RedirectToAction("Success");
             } else {
-                    viewModel.ValidationErrorMessage = SharedStrings.MissingIncomeLevelValidationError;
+                viewModel.ValidationErrorMessage = SharedStrings.MissingIncomeLevelValidationError;
             }
             
             return View(viewModel);
+        }
+
+        [Authorize(Policy="RegisteredAsUser")]
+        public IActionResult Success()
+        {
+            return View();
         }
     }
 }
