@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SF.App.Extensions;
 using SF.App.Models.Data;
+using SF.App.Models.Repositories;
 
 namespace SF.App
 {
@@ -40,7 +41,9 @@ namespace SF.App
                 });
             });
 
-            services.AddSingleton<SocialFundDBContext>();
+            services.AddSingleton<IDatabaseContext, SocialFundDBContext>();
+            services.AddSingleton<IReportRepository, ReportRepository>();
+            services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
             services.AddSingleton<IAuthorizationHandler, SocialFundAdminHandler>();
             services.AddSingleton<IAuthorizationHandler, SocialFundUserHandler>();
 

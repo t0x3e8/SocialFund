@@ -1,0 +1,52 @@
+@model SF.App.Models.ViewModels.ReportFamilyIncomeViewModel
+
+<div class="row">
+    <div class="card col-md-8 mx-auto px-0">
+        <div class="card-header">Formularz oświadczenia o dochodach</div>
+        <div class="card-body">
+            <form method="Post">
+                <div class="lead text-justify mt-2">
+                    Oświadczenie o dochodach osób pozostających we wspólnym gospodarstwie domowym
+                </div>
+                <div class="pl-5 mt-3">
+                    <small id="incomeLeveleHelp" class="text-danger">
+                        @Model.ValidationErrorMessage
+                    </small>
+                    @foreach (var item in Model.IncomeLevels)
+                    {
+                        <div class="input-group pb-2">
+                            <div class="radio">
+                                <label><input asp-for="SelectedIncomeLevel" type="radio" value="@item.Level">   @item.Text</label>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="text-justify mt-3">
+                    Oświadczam, że podane dane są zgodne z prawdą, a w przypadku zmiany mojej sytuacji materialnej 
+                    zobowiązuję się powiadomić ZFŚS. Dokument będzie stanowił podstawę do wypłacenia świadczeń ZFŚS w
+                    okresie 12 miesięcy od momentu jego dostarczenia do ZFŚS. Po tym okresie wymagane jest jego ponowne
+                    złożenie.
+                </div>
+                <div class="text-justify mt-3">
+                    Mam świadomość, że dane te mogą podlegać weryfikacji W przypadku podania danych nieprawdziwych,
+                    zgodnie z regulaminem ZFŚS, utracę prawo do korzystania ze świadczeń funduszu na okres 3 lat
+                    kalendarzowych.
+                </div>
+                <div class="text-justify mt-4">
+                    Dodatkowe informacje (opcjonalne):
+                </div>
+                <div class="input-group pl-5 pt-2">
+                    <div class="checkbox">
+                        <label><input asp-for="IsVoucherRequested"> Wnioskuję o przyznanie Przedpłaconej Karty Świątecznej,</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mx-auto mt-3">
+                    <input type="submit" class="btn btn-primary btn-block" value="Prześlij"/>
+                </div>
+                <div class="small mt-5">
+                    * Średni dochód brutto na osobę w gospodarstwie rodzinnym wyliczamy za okres ostatnich 3 miesięcy.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

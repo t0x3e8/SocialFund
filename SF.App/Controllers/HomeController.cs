@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SF.App.Models;
@@ -7,27 +6,25 @@ using SF.App.Models.ViewModels;
 using System.Collections.Generic;
 using SF.App.Models.Data;
 using System;
+using SF.App.Models.Repositories;
 
 namespace SF.App.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private SocialFundDBContext dBContext;
-
-        public HomeController(SocialFundDBContext dBContext)
+        public HomeController(IEmployeeRepository employeeRepository, IReportRepository reportRepository)
+            : base(employeeRepository, reportRepository)
         {
-            this.dBContext = dBContext;
         }
 
         [Authorize]
         public IActionResult Index()
         {
-            var userUpn = this.User.FindFirst(claim => claim.Type == ClaimTypes.Upn);
-            var userEmail = (userUpn != null) ? userUpn.Value : "";
+            var userEmail = this.GetUserEmail();
             HomeIndexViewModel viewModel = new HomeIndexViewModel { IsModelEmpty = true};
 
             if (!string.IsNullOrEmpty(userEmail)) {
-                var employee = this.dBContext.Employees.Find(e => e.Email == userEmail);
+                var employee = this.EmployeeRepository.Get(userEmail);
                 if (employee != null) {
                     viewModel = new HomeIndexViewModel() {
                         EmployeeId = employee.ID,
@@ -47,12 +44,12 @@ namespace SF.App.Controllers
 
             return View(viewModel);
         }
-
         
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(HomeIndexViewModel viewModel) {
-            var employee = this.dBContext.Employees.Find(emp => emp.Email == viewModel.Email);
+            var employee = this.EmployeeRepository.Get(viewModel.Email);
             if (employee.Name != viewModel.Name)
                 employee.Name = viewModel.Name;
             if (employee.Surname != viewModel.Surname)
@@ -70,22 +67,21 @@ namespace SF.App.Controllers
             return View();
         }
 
-
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public IActionResult ReportNoRecord() {
-            var userUpn = this.User.FindFirst(claim => claim.Type == ClaimTypes.Upn);
-            var userEmail = (userUpn != null) ? userUpn.Value : "";
-
+            var userEmail = this.GetUserEmail();
+            
             if (!string.IsNullOrEmpty(userEmail)) {
-                var report = this.dBContext.Reports.Find(r => r.RequesterEmail == userEmail && r.Type == ReportType.MissingProfileInfo);
+                var report = this.ReportRepository.Get(ReportType.MissingProfileInfo, userEmail);
                 if(report == null) {
                     report = new Report{
                         RequesterEmail = userEmail,
                         Type = ReportType.MissingProfileInfo
                     };
 
-                    this.dBContext.Reports.Add(report);
+                    this.ReportRepository.Add(report);
                 }
                 else {
                     report.SubmissionDate = DateTime.Now;
