@@ -6,7 +6,7 @@ namespace SF.App.Models.Data {
         public DateTime SubmissionDate { get; set; }
         public ReportType Type { get; set; }
         public ReportStatus Status { get; set;}
-
+        public object Data { get; set; }
         public Report()
         {
             this.SubmissionDate = DateTime.Now;
@@ -16,6 +16,7 @@ namespace SF.App.Models.Data {
 
     public enum ReportType : int {
         MissingProfileInfo = 1,
+        FamilyIncome = 2
     }
 
     public enum ReportStatus : int {

@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using SF.App.Controllers;
+using SF.App.Models.Data;
+using SF.App.Models.Repositories;
 using SF.App.Models.ViewModels;
 using Xunit;
+using Moq;
 
 public class ReportControllerTests {
     [Fact]
     public void IncomeReport_Should_Return_ViewModel()
     {
         //Given
-        ReportController controller = new ReportController(); 
+        ReportController controller = new ReportController(null); 
         //When
         ViewResult result = controller.FamilyIncome() as ViewResult;
         //Then
@@ -26,7 +29,7 @@ public class ReportControllerTests {
     public void IncomeReport_Should_Return_False_When_Validation_Fails()
     {
         //Given
-        ReportController controller = new ReportController();
+        ReportController controller = new ReportController(null);
         // GET page to get empty view model
         ReportFamilyIncomeViewModel notChangedViewModel = (controller.FamilyIncome() as ViewResult).Model as ReportFamilyIncomeViewModel;
         //When
@@ -42,7 +45,11 @@ public class ReportControllerTests {
     public void IncomeReport_Should_Redirect_To_Success_When_Validation_Passes()
     {
         //Given
-        ReportController controller = new ReportController();
+        var mock = new Mock<IReportRepository>();
+        mock.Setup(rr => rr.Add(It.IsAny<string>(), It.IsAny<object>(), ReportType.FamilyIncome));
+        ReportController controller = new ReportController(mock.Object);
+        controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("xyz@test.com");
+
         // GET page to get empty view model
         ReportFamilyIncomeViewModel changedViewModel = (controller.FamilyIncome() as ViewResult).Model as ReportFamilyIncomeViewModel;
         //When
@@ -51,5 +58,6 @@ public class ReportControllerTests {
         //Then
         Assert.NotNull(result);
         Assert.Same("Success", result.ActionName);
+        mock.Verify(rr => rr.Add(It.IsAny<string>(), It.IsAny<object>(), ReportType.FamilyIncome), Times.Once);
     }
 }

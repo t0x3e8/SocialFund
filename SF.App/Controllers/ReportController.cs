@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SF.App.Models.Repositories;
 using SF.App.Models.ViewModels;
 using SF.App.Resources;
+using SF.App.Models.Data;
 
 namespace SF.App.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : BaseController
     {
+        public ReportController(IReportRepository reportRepository) : base(null, reportRepository)
+        {
+        }
+
         [Authorize(Policy="RegisteredAsUser")]
         public IActionResult Index()
         {
@@ -31,6 +37,11 @@ namespace SF.App.Controllers
                 viewModel.SelectedIncomeLevel == IncomeLevelType.AboveThen3500) {
                     viewModel.ValidationErrorMessage = null;
                     viewModel.IsSuccess = true;
+
+                    this.ReportRepository.Add(
+                            userId: this.GetUserEmail(), 
+                            data: viewModel.SelectedIncomeLevel, 
+                            reportType: ReportType.FamilyIncome);
 
                     return RedirectToAction("Success");
             } else {

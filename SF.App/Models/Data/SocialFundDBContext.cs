@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SF.App.Models.Data;
 
 namespace SF.App.Models.Data {
-    public class SocialFundDBContext {
+    public class SocialFundDBContext : IDatabaseContext{
     
         public List<Employee> Employees { get; private set;}
         public List<Report> Reports { get; private set;}
