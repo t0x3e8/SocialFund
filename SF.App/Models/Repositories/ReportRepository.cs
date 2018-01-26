@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SF.App.Models.Data;
 
 namespace SF.App.Models.Repositories {
@@ -36,6 +37,10 @@ namespace SF.App.Models.Repositories {
 
         public Report Get(ReportType reportType, string email) {
             return this.databaseContext.Reports.Find(r => r.RequesterEmail.Equals(email) && r.Type.Equals(reportType));
+        }
+
+        public IEnumerable<Report> GetAll(string email) {
+            return this.databaseContext.Reports.FindAll(r => r.RequesterEmail.Equals(email));
         }
     }
 }
