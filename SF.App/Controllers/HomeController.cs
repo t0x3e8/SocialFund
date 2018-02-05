@@ -13,7 +13,7 @@ namespace SF.App.Controllers
     public class HomeController : BaseController
     {
         public HomeController(IEmployeeRepository employeeRepository, IReportRepository reportRepository)
-            : base(employeeRepository, reportRepository)
+            : base(employeeRepository, reportRepository, null)
         {
         }
 

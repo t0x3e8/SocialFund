@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 using SF.App.Extensions;
 using SF.App.Models.Data;
 using SF.App.Models.Repositories;
@@ -48,6 +49,7 @@ namespace SF.App
             services.AddSingleton<IAuthorizationHandler, SocialFundUserHandler>();
 
             services.AddMvc();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

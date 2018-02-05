@@ -4,12 +4,13 @@ using SF.App.Models.Repositories;
 using SF.App.Models.ViewModels;
 using SF.App.Resources;
 using SF.App.Models.Data;
+using AutoMapper;
 
 namespace SF.App.Controllers
 {
     public class ReportController : BaseController
     {
-        public ReportController(IReportRepository reportRepository) : base(null, reportRepository)
+        public ReportController(IReportRepository reportRepository, IMapper mapper) : base(null, reportRepository, mapper)
         {
         }
 
