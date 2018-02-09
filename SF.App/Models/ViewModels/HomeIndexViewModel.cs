@@ -3,7 +3,7 @@ namespace SF.App.Models.ViewModels
     public class HomeIndexViewModel
     {
         public bool IsModelEmpty { get;set;}
-        public string EmployeeId { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string HiredDate { get; set; }

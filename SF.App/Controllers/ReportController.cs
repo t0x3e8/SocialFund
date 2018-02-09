@@ -17,6 +17,7 @@ namespace SF.App.Controllers
         [Authorize(Policy="RegisteredAsUser")]
         public IActionResult Index()
         {
+            
             return View();
         }
 
