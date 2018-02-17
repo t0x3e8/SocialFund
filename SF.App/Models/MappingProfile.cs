@@ -14,7 +14,10 @@ namespace SF.App.Models {
             // CreateMap<HomeIndexViewModel, Employee>()
             //     .ForMember(dest => dest.Manager, opt => opt.MapFrom(src => src.DirectManager))
             //     .ForMember(dest => dest.RoleName, opt => opt.Ignore());
-                
+            
+            CreateMap<Report, ReportIndexViewModel>()
+                .ForMember(dest => dest.ReportName, opt =>  opt.ResolveUsing<ReportTypeResolver>())// opt.ResolveUsing<ReportTypeResolver, ReportType>(src => src.Type)),
+                .ForMember(dest => dest.SubmissionDate, opt => opt.MapFrom(src => src.SubmissionDate.ToShortDateString()));
         }
     }
 }

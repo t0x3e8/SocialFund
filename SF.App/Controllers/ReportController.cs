@@ -5,6 +5,7 @@ using SF.App.Models.ViewModels;
 using SF.App.Resources;
 using SF.App.Models.Data;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace SF.App.Controllers
 {
@@ -17,8 +18,10 @@ namespace SF.App.Controllers
         [Authorize(Policy="RegisteredAsUser")]
         public IActionResult Index()
         {
+            var reports = this.ReportRepository.GetAll(this.GetUserEmail());
+            IEnumerable<ReportIndexViewModel> viewModel = Mapper.Map<List<ReportIndexViewModel>>(reports);
             
-            return View();
+            return View(viewModel);
         }
 
 

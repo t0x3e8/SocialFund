@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SF.App.Models.Data;
 
 namespace SF.App.Models.Repositories {
@@ -5,5 +6,6 @@ namespace SF.App.Models.Repositories {
         void Add(string userId, object data, ReportType reportType);
         void Add(Report report);
         Report Get(ReportType reportType, string email);
+        IEnumerable<Report> GetAll(string email);
     }
 }
