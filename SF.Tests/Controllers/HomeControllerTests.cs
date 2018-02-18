@@ -5,8 +5,14 @@ using SF.App.Models.Repositories;
 using SF.App.Models.ViewModels;
 using Xunit;
 using Moq;
+using AutoMapper;
+using System;
 
-public class HomeControllerTests {
+public class HomeControllerTests : IDisposable {
+    public void Dispose()
+    {
+        Mapper.Reset();
+    }
     private static Employee MakeTestEmployee() {
         Employee emp = new Employee();
         emp.Department = "testDepartment";
@@ -25,8 +31,9 @@ public class HomeControllerTests {
     public void Index_Should_Return_Form_of_Registered_User() {
         // arrange
         var mock = new Mock<IEmployeeRepository>();
+
         mock.Setup(er => er.Get("test@email.com")).Returns(MakeTestEmployee());
-        HomeController controller = new HomeController(mock.Object, null);
+        HomeController controller = new HomeController(mock.Object, null, MapperFactory.GetMapperInstance());
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("test@email.com");
         
         //act
@@ -39,7 +46,7 @@ public class HomeControllerTests {
         Assert.NotNull((result.Model as HomeIndexViewModel).Department);
         Assert.NotNull((result.Model as HomeIndexViewModel).DirectManager);
         Assert.NotNull((result.Model as HomeIndexViewModel).Email);
-        Assert.NotNull((result.Model as HomeIndexViewModel).EmployeeId);
+        Assert.NotNull((result.Model as HomeIndexViewModel).Id);
         Assert.NotNull((result.Model as HomeIndexViewModel).HiredDate);
         Assert.NotNull((result.Model as HomeIndexViewModel).Name);
         Assert.NotNull((result.Model as HomeIndexViewModel).Surname);
@@ -53,7 +60,7 @@ public class HomeControllerTests {
         // arrange
         var mock = new Mock<IEmployeeRepository>();
         mock.Setup(er => er.Get("test@email.com")).Returns(MakeTestEmployee());
-        HomeController controller = new HomeController(mock.Object, null);
+        HomeController controller = new HomeController(mock.Object, null, MapperFactory.GetMapperInstance());
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("test@email.com");
         HomeIndexViewModel vm = (controller.Index() as ViewResult).Model as HomeIndexViewModel;
         
@@ -72,7 +79,7 @@ public class HomeControllerTests {
         // arrange
         var mock = new Mock<IEmployeeRepository>();
         mock.Setup(er => er.Get("test@email.com")).Returns<Employee>(null);
-        HomeController controller = new HomeController(mock.Object, null);
+        HomeController controller = new HomeController(mock.Object, null, null);
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("doesnotexit@dgs.com");
         
         //act
@@ -93,7 +100,7 @@ public class HomeControllerTests {
                 .Returns(new Report());
         mock.Setup(rr => rr.Add(It.IsAny<Report>()));
 
-        HomeController controller = new HomeController(null, mock.Object);
+        HomeController controller = new HomeController(null, mock.Object, null);
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("test@email.com");
         
         //act

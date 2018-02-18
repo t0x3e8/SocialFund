@@ -16,6 +16,8 @@ namespace SF.App.Models.Data {
         private void InitializeReports()
         {
             this.Reports = new List<Report>();
+            this.Reports.Add(new Report {ID = "1", RequesterEmail = "jaju@dgs.com", SubmissionDate = new DateTime(2017, 10, 5), Type = ReportType.FamilyIncome, Status = ReportStatus.New, Data = 2 });
+            this.Reports.Add(new Report {ID = "2", RequesterEmail = "jaju@dgs.com", SubmissionDate = new DateTime(2017, 10, 15), Type = ReportType.MissingProfileInfo, Status = ReportStatus.Resolved});
         }
 
         private void InitializeEmployees()

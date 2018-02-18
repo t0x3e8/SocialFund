@@ -2,6 +2,7 @@ using System;
 
 namespace SF.App.Models.Data {
     public class Report {
+        public string ID { get; set; }
         public string RequesterEmail {get; set;}
         public DateTime SubmissionDate { get; set; }
         public ReportType Type { get; set; }

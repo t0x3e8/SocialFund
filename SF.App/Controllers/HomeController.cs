@@ -7,13 +7,14 @@ using System.Collections.Generic;
 using SF.App.Models.Data;
 using System;
 using SF.App.Models.Repositories;
+using AutoMapper;
 
 namespace SF.App.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(IEmployeeRepository employeeRepository, IReportRepository reportRepository)
-            : base(employeeRepository, reportRepository)
+        public HomeController(IEmployeeRepository employeeRepository, IReportRepository reportRepository, IMapper mapper)
+            : base(employeeRepository, reportRepository, mapper)
         {
         }
 
@@ -26,16 +27,7 @@ namespace SF.App.Controllers
             if (!string.IsNullOrEmpty(userEmail)) {
                 var employee = this.EmployeeRepository.Get(userEmail);
                 if (employee != null) {
-                    viewModel = new HomeIndexViewModel() {
-                        EmployeeId = employee.ID,
-                        Name = employee.Name,
-                        Surname = employee.Surname,
-                        Department = employee.Department,
-                        DirectManager = employee.Manager,
-                        HiredDate = employee.HiredDate.ToShortDateString(),
-                        Email = employee.Email,
-                        IsModelEmpty = false
-                    };
+                    viewModel = this.Mapper.Map<HomeIndexViewModel>(employee);                    
                 }
             }
 
@@ -50,6 +42,8 @@ namespace SF.App.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(HomeIndexViewModel viewModel) {
             var employee = this.EmployeeRepository.Get(viewModel.Email);
+
+            // TODO: this needs to be replaced with Mapper and finally stored
             if (employee.Name != viewModel.Name)
                 employee.Name = viewModel.Name;
             if (employee.Surname != viewModel.Surname)

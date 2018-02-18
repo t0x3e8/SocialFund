@@ -1,7 +1,7 @@
 ﻿@model SF.App.Models.ViewModels.HomeIndexViewModel
 
 <div class="row">
-    <div class="card col-md-6 mx-auto mt-8 px-0">
+    <div class="card col-md-8 mx-auto px-0">
         <div class="card-header">Dane pracownika</div>
         <div class="card-body">
             <form method="Post" asp-controller="Home" asp-action="Index">
@@ -9,7 +9,7 @@
                     <div class="form-row">
                         <div class="col-md-3">
                             <label for="id">Identyfikator pracownika</label>
-                            <input class="form-control " id="id" type="text" asp-for="EmployeeId" readonly />
+                            <input class="form-control " id="id" type="text" asp-for="Id" readonly />
                         </div>
                     </div>
                 </div>
