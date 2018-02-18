@@ -3,6 +3,9 @@ using SF.App.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using SF.App.Models;
 using SF.App.Models.Data;
+using Moq;
+using SF.App.Models.Repositories;
+using AutoMapper;
 
 public class EmployeesControllerTests {
 
@@ -10,7 +13,8 @@ public class EmployeesControllerTests {
     public void Index_Should_Return_Collection_of_Employees()
     {
         //arrange
-        var controller = new EmployeesController();
+        IEmployeeRepository repo = new EmployeeRepository(new SocialFundDBContext());
+        var controller = new EmployeesController(repo, Mapper.Instance);
         
         //act        
         var result = controller.Index() as ViewResult;
