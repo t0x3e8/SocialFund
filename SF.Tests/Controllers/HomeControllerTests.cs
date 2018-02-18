@@ -6,8 +6,13 @@ using SF.App.Models.ViewModels;
 using Xunit;
 using Moq;
 using AutoMapper;
+using System;
 
-public class HomeControllerTests : BaseUnitTest {
+public class HomeControllerTests : IDisposable {
+    public void Dispose()
+    {
+        Mapper.Reset();
+    }
     private static Employee MakeTestEmployee() {
         Employee emp = new Employee();
         emp.Department = "testDepartment";
@@ -28,7 +33,7 @@ public class HomeControllerTests : BaseUnitTest {
         var mock = new Mock<IEmployeeRepository>();
 
         mock.Setup(er => er.Get("test@email.com")).Returns(MakeTestEmployee());
-        HomeController controller = new HomeController(mock.Object, null, Mapper.Instance);
+        HomeController controller = new HomeController(mock.Object, null, MapperFactory.GetMapperInstance());
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("test@email.com");
         
         //act
@@ -55,7 +60,7 @@ public class HomeControllerTests : BaseUnitTest {
         // arrange
         var mock = new Mock<IEmployeeRepository>();
         mock.Setup(er => er.Get("test@email.com")).Returns(MakeTestEmployee());
-        HomeController controller = new HomeController(mock.Object, null, Mapper.Instance);
+        HomeController controller = new HomeController(mock.Object, null, MapperFactory.GetMapperInstance());
         controller.ControllerContext = Helper.CreateControllerContextWithUserClaim("test@email.com");
         HomeIndexViewModel vm = (controller.Index() as ViewResult).Model as HomeIndexViewModel;
         
