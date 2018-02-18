@@ -7,7 +7,7 @@ using Xunit;
 using Moq;
 using AutoMapper;
 
-public class HomeControllerTests : BaseUnitTest{
+public class HomeControllerTests : BaseUnitTest {
     private static Employee MakeTestEmployee() {
         Employee emp = new Employee();
         emp.Department = "testDepartment";

@@ -7,7 +7,7 @@ using Moq;
 using SF.App.Models.Repositories;
 using AutoMapper;
 
-public class EmployeesControllerTests {
+public class EmployeesControllerTests : BaseUnitTest {
 
     [Fact]
     public void Index_Should_Return_Collection_of_Employees()
